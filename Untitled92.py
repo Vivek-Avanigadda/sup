@@ -4,8 +4,6 @@
 # In[6]:
 
 
-
-
 import base64
 
 import streamlit as st
@@ -13,6 +11,20 @@ from PIL import ImageOps, Image
 import numpy as np
 
 
+def set_background(image_file):
+  
+    with open(image_file, "rb") as f:
+        img_data = f.read()
+    b64_encoded = base64.b64encode(img_data).decode()
+    style = f"""
+        <style>
+        .stApp {{
+            background-image: url(data:image/png;base64,{b64_encoded});
+            background-size: cover;
+        }}
+        </style>
+    """
+    st.markdown(style, unsafe_allow_html=True)
 
 
 def classify(image, model, class_names):
@@ -46,13 +58,13 @@ from PIL import Image
 #import numpy as np
 #import os
 #os.chdir(r"D:\Data YOLOv8")
-
+ set_background("my BG.jpg")
 
 # set title
-st.title('Weather classification')
+st.title('Animals classification')
 
 # set header
-st.header('Please upload a weather image')
+st.header(' upload your input image')
 
 # upload file
 file = st.file_uploader('', type=['jpeg', 'jpg', 'png'])
@@ -76,6 +88,7 @@ if file is not None:
     # write classification
     st.write("## {}".format(class_name))
     st.write("### score: {}%".format(int(conf_score * 100) / 100))
+
 
 
 # In[ ]:
