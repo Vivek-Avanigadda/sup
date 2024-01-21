@@ -4,10 +4,6 @@
 # In[6]:
 
 
-import os 
-path=r"C:\Users\zbook 17 g3\Downloads\New folder"
-os.chdir(path)
-
 
 
 import base64
