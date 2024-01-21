@@ -1,0 +1,10 @@
+0 Tiger
+1 Lion
+2 Horse
+3 Goat
+4 Frog
+5 Duck
+6 Dog
+7 Deer
+8 Cat
+9 Bird
