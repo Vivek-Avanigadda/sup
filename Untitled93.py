@@ -6,16 +6,16 @@ import numpy as np
 animal_info = {"Cat":"lives home","Dog":"lives outside"}
 
 
+
 def get_animal_info(animal_name, animal_info_dict):
     # التحقق مما إذا كان اسم الحيوان موجود في الـ dictionary
     if animal_name in animal_info_dict:
         # استخراج المعلومات
         info = animal_info_dict[animal_name]
-        # طباعة المعلومات
-        print(info)
-
+        # إرجاع المعلومات بدلاً من طباعتها
+        return info
     else:
-        print("null")
+        return "Null"
 
 
 def set_background(image_file):
