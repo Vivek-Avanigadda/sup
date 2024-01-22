@@ -112,6 +112,7 @@ def get_animal_info(animal_name, animal_info_dict):
     else:
         return "Null"
 
+
 def display_table(animal_info_dict, selected_animal):
     # إعداد العناوين والبيانات للـ PrettyTable
     table = PrettyTable()
@@ -123,13 +124,11 @@ def display_table(animal_info_dict, selected_animal):
         for attribute, value in animal_info.items():
             table.add_row([attribute, value])
 
-        # عرض الجدول
-        print(f"\n information: {selected_animal}")
-        print(table)
+        # عرض الجدول باستخدام st.write بدلاً من print
+        st.write(f"\n information: {selected_animal}")
+        st.write(table)
     else:
-        print(f"\n{selected_animal} غير موجود في قاعدة البيانات.")
-
-# اختبار الكود
+        st.write(f"\n{selected_animal} none")
 
 
 def set_background(image_file):
@@ -215,4 +214,4 @@ if file is not None:
     animal_info = get_animal_info(str(class_name), animal_info)
     st.write("## {}".format(class_name))
     st.write("### Score: {}%".format(int(conf_score * 100) / 100))
-    st.write("### Animal Info: {}".format(animal_info_output))
+    #st.write("### Animal Info: {}".format(animal_info_output))
