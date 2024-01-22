@@ -3,7 +3,7 @@ import base64
 import streamlit as st
 from PIL import ImageOps, Image
 import numpy as np
-animal_info = {"cat":"lives home","dog":"lives outside"}
+animal_info = {"Cat":"lives home","Dog":"lives outside"}
 
 
 def get_animal_info(animal_name, animal_info_dict):
