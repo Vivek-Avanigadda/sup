@@ -96,7 +96,7 @@ if file is not None:
     class_name, conf_score = classify(image, model, class_names)
     get_animal_info(str(class_name), animal_info)
 
-
-    # write classification
-    st.write("## {}".format(class_name,get_animal_info(class_name, animal_info)))
-    st.write("### score: {}%".format(int(conf_score * 100) / 100))
+    animal_info = get_animal_info(str(class_name), animal_info)
+    st.write("## {}".format(class_name))
+    st.write("### Score: {}%".format(int(conf_score * 100) / 100))
+    st.write("### Animal Info: {}".format(animal_info))
