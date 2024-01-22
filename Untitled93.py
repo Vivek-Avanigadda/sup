@@ -100,15 +100,36 @@ animal_info = {
 
 
 
+from prettytable import PrettyTable
+
 def get_animal_info(animal_name, animal_info_dict):
     # التحقق مما إذا كان اسم الحيوان موجود في الـ dictionary
     if animal_name in animal_info_dict:
-        # استخراج المعلومات
+        # استرجاع المعلومات
         info = animal_info_dict[animal_name]
         # إرجاع المعلومات بدلاً من طباعتها
         return info
     else:
         return "Null"
+
+def display_table(animal_info_dict, selected_animal):
+    # إعداد العناوين والبيانات للـ PrettyTable
+    table = PrettyTable()
+    table.field_names = ["Attribute", "Value"]
+
+    # عرض معلومات الحيوان المحدد فقط
+    animal_info = get_animal_info(selected_animal, animal_info_dict)
+    if animal_info != "Null ":
+        for attribute, value in animal_info.items():
+            table.add_row([attribute, value])
+
+        # عرض الجدول
+        print(f"\n information: {selected_animal}")
+        print(table)
+    else:
+        print(f"\n{selected_animal} غير موجود في قاعدة البيانات.")
+
+# اختبار الكود
 
 
 def set_background(image_file):
@@ -187,7 +208,8 @@ if file is not None:
 
     # classify image
     class_name, conf_score = classify(image, model, class_names)
-    animal_info_output = get_animal_info(class_name, animal_info)
+    animal_info_output = display_table(animal_info, class_name)
+
 
 
     animal_info = get_animal_info(str(class_name), animal_info)
