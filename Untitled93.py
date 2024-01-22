@@ -181,7 +181,7 @@ from PIL import Image
 #import numpy as np
 #import os
 #os.chdir(r"D:\Data YOLOv8")
-set_background(r"C:\Users\zbook 17 g3\Downloads\animals\my BG.jpg")
+set_background("BG")
 
 # set title
 st.title('Animals classification')
@@ -193,10 +193,10 @@ st.header(' upload your input image')
 file = st.file_uploader('', type=['jpeg', 'jpg', 'png'])
 
 # load classifier
-model = load_model(r"C:\Users\zbook 17 g3\Downloads\animals\keras_model.h5")
+model = load_model("keras_model.h5")
 
 # load class names
-with open(r"C:\Users\zbook 17 g3\Downloads\animals\labels.txt", 'r') as f:
+with open("labels.txt", 'r') as f:
     class_names = [a[:-1].split(' ')[1] for a in f.readlines()]
     f.close()
 
