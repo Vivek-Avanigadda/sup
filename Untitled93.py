@@ -1,19 +1,37 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-
-
-
 import base64
 
 import streamlit as st
 from PIL import ImageOps, Image
 import numpy as np
+animal_info = {"cat":"lives home","dog":"lives outside"}
 
 
+def get_animal_info(animal_name, animal_info_dict):
+    # التحقق مما إذا كان اسم الحيوان موجود في الـ dictionary
+    if animal_name in animal_info_dict:
+        # استخراج المعلومات
+        info = animal_info_dict[animal_name]
+        # طباعة المعلومات
+        print(info)
+
+    else:
+        print("null")
+
+
+def set_background(image_file):
+  
+    with open(image_file, "rb") as f:
+        img_data = f.read()
+    b64_encoded = base64.b64encode(img_data).decode()
+    style = f"""
+        <style>
+        .stApp {{
+            background-image: url(data:image/png;base64,{b64_encoded});
+            background-size: cover;
+        }}
+        </style>
+    """
+    st.markdown(style, unsafe_allow_html=True)
 
 
 def classify(image, model, class_names):
@@ -41,28 +59,32 @@ def classify(image, model, class_names):
     return class_name, confidence_score
 
 
+get_animal_info(str(class_name), animal_info)
+
+
+
 import streamlit as st
 from keras.models import load_model
 from PIL import Image
 #import numpy as np
 #import os
 #os.chdir(r"D:\Data YOLOv8")
-
+set_background(r"C:\Users\zbook 17 g3\Downloads\animals\my BG.jpg")
 
 # set title
-st.title('Weather classification')
+st.title('Animals classification')
 
 # set header
-st.header('Please upload a weather image')
+st.header(' upload your input image')
 
 # upload file
 file = st.file_uploader('', type=['jpeg', 'jpg', 'png'])
 
 # load classifier
-model = load_model("keras_model.h5")
+model = load_model(r"C:\Users\zbook 17 g3\Downloads\animals\keras_model.h5")
 
 # load class names
-with open("labels.txt", 'r') as f:
+with open(r"C:\Users\zbook 17 g3\Downloads\animals\labels.txt", 'r') as f:
     class_names = [a[:-1].split(' ')[1] for a in f.readlines()]
     f.close()
 
@@ -75,21 +97,5 @@ if file is not None:
     class_name, conf_score = classify(image, model, class_names)
 
     # write classification
-    st.write("## {}".format(class_name))
+    st.write("## {}".format(class_name,get_animal_info(str(class_name), animal_info)))
     st.write("### score: {}%".format(int(conf_score * 100) / 100))
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
