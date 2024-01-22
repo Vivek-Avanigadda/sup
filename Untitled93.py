@@ -59,7 +59,6 @@ def classify(image, model, class_names):
     return class_name, confidence_score
 
 
-get_animal_info(str(class_name), animal_info)
 
 
 
@@ -95,6 +94,8 @@ if file is not None:
 
     # classify image
     class_name, conf_score = classify(image, model, class_names)
+    get_animal_info(str(class_name), animal_info)
+
 
     # write classification
     st.write("## {}".format(class_name,get_animal_info(str(class_name), animal_info)))
