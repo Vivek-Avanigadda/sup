@@ -98,5 +98,5 @@ if file is not None:
 
 
     # write classification
-    st.write("## {}".format(class_name,get_animal_info(str(class_name), animal_info)))
+    st.write("## {}".format(class_name,get_animal_info(class_name, animal_info)))
     st.write("### score: {}%".format(int(conf_score * 100) / 100))
