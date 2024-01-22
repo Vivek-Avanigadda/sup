@@ -3,7 +3,100 @@ import base64
 import streamlit as st
 from PIL import ImageOps, Image
 import numpy as np
-animal_info = {"Cat":"lives home","Dog":"lives outside"}
+animal_info = {
+    "Cat": {
+        "Habitat": "Indoors",
+        "Diet": "Carnivore",
+        "Average Lifespan": "12-15 years",
+        "Behavior": "Cuddly and independent",
+        "Number of Bones": 230,
+        "Average Adult Weight (kg)": 4,
+        "Distribution": "Worldwide, often kept as pets"
+    },
+    "Dog": {
+        "Habitat": "Varies (commonly domesticated)",
+        "Diet": "Omnivore",
+        "Average Lifespan": "10-13 years",
+        "Behavior": "Loyal and social",
+        "Number of Bones": 319,
+        "Average Adult Weight (kg)": 25,
+        "Distribution": "Worldwide, often kept as pets"
+    },
+    "Deer": {
+        "Habitat": "Forests, grasslands",
+        "Diet": "Herbivore",
+        "Average Lifespan": "6-14 years",
+        "Behavior": "Herbivore",
+        "Number of Bones": 200,
+        "Average Adult Weight (kg)": 70,
+        "Distribution": "North and South America, Europe, Asia, Africa"
+    },
+    "Cow": {
+        "Habitat": "Farms, grasslands",
+        "Diet": "Herbivore",
+        "Average Lifespan": "18-22 years",
+        "Behavior": "Domesticated",
+        "Number of Bones": 206,
+        "Average Adult Weight (kg)": 725,
+        "Distribution": "Worldwide, domesticated for various purposes"
+    },
+    "Lion": {
+        "Habitat": "Grasslands, savannas",
+        "Diet": "Carnivore",
+        "Average Lifespan": "8-12 years",
+        "Behavior": "Social predators",
+        "Number of Bones": 230,
+        "Average Adult Weight (kg)": 190,
+        "Distribution": "Africa, parts of Asia"
+    },
+    "Tiger": {
+        "Habitat": "Forests, grasslands",
+        "Diet": "Carnivore",
+        "Average Lifespan": "10-15 years",
+        "Behavior": "Solitary hunters",
+        "Number of Bones": 230,
+        "Average Adult Weight (kg)": 300,
+        "Distribution": "Asia"
+    },
+    "Duck": {
+        "Habitat": "Lakes, ponds, rivers",
+        "Diet": "Omnivore",
+        "Average Lifespan": "2-12 years",
+        "Behavior": "Waterfowl",
+        "Number of Bones": 100,
+        "Average Adult Weight (kg)": 2,
+        "Distribution": "Worldwide, near freshwater habitats"
+    },
+    "Frog": {
+        "Habitat": "Wetlands, ponds",
+        "Diet": "Insectivore",
+        "Average Lifespan": "2-15 years",
+        "Behavior": "Amphibian",
+        "Number of Bones": 40,
+        "Average Adult Weight (kg)": 0.1,
+        "Distribution": "Worldwide, often near water sources"
+    },
+    "Horse": {
+        "Habitat": "Grasslands, pastures",
+        "Diet": "Herbivore",
+        "Average Lifespan": "25-30 years",
+        "Behavior": "Domesticated, used for riding and work",
+        "Number of Bones": 205,
+        "Average Adult Weight (kg)": 500,
+        "Distribution": "Worldwide, domesticated for various purposes"
+    },
+    "Goat": {
+        "Habitat": "Mountains, grasslands",
+        "Diet": "Herbivore",
+        "Average Lifespan": "15-18 years",
+        "Behavior": "Domesticated, used for milk and meat",
+        "Number of Bones": 220,
+        "Average Adult Weight (kg)": 70,
+        "Distribution": "Worldwide, domesticated for various purposes"
+    }
+}
+
+# Test the get_animal_info function with one of the animals
 
 
 
@@ -94,9 +187,10 @@ if file is not None:
 
     # classify image
     class_name, conf_score = classify(image, model, class_names)
-    get_animal_info(str(class_name), animal_info)
+    animal_info_output = get_animal_info(class_name, animal_info)
+
 
     animal_info = get_animal_info(str(class_name), animal_info)
     st.write("## {}".format(class_name))
     st.write("### Score: {}%".format(int(conf_score * 100) / 100))
-    st.write("### Animal Info: {}".format(animal_info))
+    st.write("### Animal Info: {}".format(animal_info_output))
